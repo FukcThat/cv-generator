@@ -11,14 +11,15 @@ function Greeting() {
 
   return (
     <div className="flex-col">
-      <label htmlFor="name">Please provide a name</label>
       <input
+        placeholder="Please enter a name..."
+        aria-label="Please enter a name"
         name="name"
         value={nameInput}
         onChange={(e) => setNameInput(e.target.value)}
       />
       <button onClick={submitName}>Ok</button>
-      <h2>Hello, {name}</h2>;
+      <h2>Hello, {name}</h2>
     </div>
   );
 }
