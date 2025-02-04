@@ -10,13 +10,21 @@ const COLORS = [
 
 export default function ColorChange() {
   const [backgroundColor, setBackgroundColor] = useState(COLORS[0]);
+  const [bgTimesChanged, setBgTimesChanged] = useState(0);
 
   const onButtonClick = (color) => () => {
-    setBackgroundColor(color);
+    if (color !== backgroundColor) {
+      setBackgroundColor(color);
+      setBgTimesChanged((prevCount) => prevCount + 1);
+    }
   };
 
   return (
     <div className="bg-color-btns" style={{ backgroundColor }}>
+      <div className="bg-times-changes">
+        Color changed {bgTimesChanged} times
+      </div>
+
       {COLORS.map((color) => (
         <button
           type="button"
