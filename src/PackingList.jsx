@@ -11,7 +11,7 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Packing List:</h1>
+      <h3>Packing List:</h3>
       <ul>
         <Item isPacked={true} name={"Gitten"} />
         <Item isPacked={false} name={"Sweater"} />
