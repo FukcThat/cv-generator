@@ -1,39 +1,30 @@
-export default function PersonalInfoSection({
-  fullName,
-  address,
-  phoneNumber,
-  email,
-  birthdate,
-}) {
+export default function PersonalInfoSection({ personalInfo }) {
   return (
     <div className="personal-info--section">
-      <h1 className="resume-name">{fullName}</h1>
+      <h1 className="resume-name">{personalInfo.fullName}</h1>
       <div className="resume-contact">
-        {address && (
+        {personalInfo.address && (
           <div>
             <i className="" />
-            <span>{address}</span>
+            <span>{personalInfo.address}</span>
           </div>
         )}
-
-        {phoneNumber && (
+        {personalInfo.phoneNumber && (
           <div>
             <i className="" />
-            <span>{phoneNumber}</span>
+            <span>{personalInfo.phoneNumber}</span>
           </div>
         )}
-
-        {email && (
+        {personalInfo.email && (
           <div>
             <i className="" />
-            <span>{email}</span>
+            <span>{personalInfo.email}</span>
           </div>
         )}
-
-        {birthdate && (
+        {personalInfo.birthdate && (
           <div>
             <i className="" />
-            <span>{birthdate}</span>
+            <span>{personalInfo.birthdate.toDateString()}</span>
           </div>
         )}
       </div>

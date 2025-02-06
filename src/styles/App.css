@@ -53,7 +53,6 @@ input {
 }
 
 .page-container {
-  /* display: flex; */
   gap: 2rem;
   margin: 0rem;
   padding: 0rem;
@@ -77,5 +76,6 @@ input {
   height: 297mm;
   width: 210mm;
   background-color: white;
+  color: black;
   border: 1px solid rgb(148, 149, 149);
 }

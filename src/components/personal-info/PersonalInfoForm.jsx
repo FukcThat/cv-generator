@@ -1,13 +1,6 @@
 import InputGroup from "../general/InputGroup";
 
-export default function PersonalInfoForm({
-  fullName,
-  address,
-  phoneNumber,
-  email,
-  birthdate,
-  onInfoChange,
-}) {
+export default function PersonalInfoForm({ personalInfo, setPersonalInfo }) {
   return (
     <>
       <form className="personal-info-form flex-col">
@@ -17,8 +10,10 @@ export default function PersonalInfoForm({
           id="full-name"
           labelText="First and last name"
           placeholder="First and last name"
-          value={fullName}
-          onChange={onInfoChange}
+          value={personalInfo.fullName}
+          onChange={(e) => {
+            setPersonalInfo({ ...personalInfo, fullName: e.target.value });
+          }}
           data-key="fullName"
         />
         <InputGroup
@@ -26,8 +21,10 @@ export default function PersonalInfoForm({
           id="address"
           labelText="Address"
           placeholder="Street, City, Country"
-          value={address}
-          onChange={onInfoChange}
+          value={personalInfo.address}
+          onChange={(e) => {
+            setPersonalInfo({ ...personalInfo, address: e.target.value });
+          }}
           data-key="address"
         />
         <InputGroup
@@ -35,8 +32,10 @@ export default function PersonalInfoForm({
           id="phone-number"
           labelText="Phone number"
           placeholder={"+99 1234 34567891"}
-          value={phoneNumber}
-          onChange={onInfoChange}
+          value={personalInfo.phoneNumber}
+          onChange={(e) => {
+            setPersonalInfo({ ...personalInfo, phoneNumber: e.target.value });
+          }}
           data-key="phoneNumber"
         />
         <InputGroup
@@ -44,17 +43,20 @@ export default function PersonalInfoForm({
           id="email"
           labelText="E-Mail"
           placeholder="someone@something.com"
-          value={email}
-          onChange={onInfoChange}
+          value={personalInfo.email}
+          onChange={(e) => {
+            setPersonalInfo({ ...personalInfo, email: e.target.value });
+          }}
           data-key="email"
         />
         <InputGroup
           type="date"
           id="birthdate"
           labelText="Date of birth"
-          placeholder="01.01.2000"
-          value={birthdate}
-          onChange={onInfoChange}
+          value={personalInfo.birthdate}
+          onChange={(e) => {
+            setPersonalInfo({ ...personalInfo, birthdate: e.target.value });
+          }}
           data-key="birthdate"
           optional
         />
