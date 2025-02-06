@@ -1,18 +1,15 @@
-import { useState } from "react";
-import "./App.css";
-import Greeting from "./Greeting";
-import PackingList from "./PackingList";
-import ColorChange from "./BGColorChange";
-import Person from "./IncreaseAge";
+import "./styles/App.css";
+import Resume from "./components/Resume";
+import Sidebar from "./Sidebar";
 
 function App() {
   return (
     <>
-      <div>
-        <Greeting />
-        <PackingList />
-        <ColorChange />
-        <Person />
+      <div className="page-container flex-row">
+        <Sidebar />
+        <div className="resume-container">
+          <Resume />
+        </div>
       </div>
     </>
   );
