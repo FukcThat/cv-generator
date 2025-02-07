@@ -5,10 +5,10 @@ import { useState } from "react";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
-    fullName: "",
-    address: "",
-    phoneNumber: "",
-    email: "",
+    fullName: "Someone Decent",
+    address: "Somestreet 3, 24680 Someplace, Somewhere",
+    phoneNumber: "+99 1234 34567891",
+    email: "someone@something.com",
     birthdate: new Date(),
   });
 
