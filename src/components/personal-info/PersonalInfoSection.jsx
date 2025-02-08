@@ -1,8 +1,8 @@
 export default function PersonalInfoSection({ personalInfo }) {
   return (
-    <div className="personal-info--section">
+    <div className="personal-info--section flex-col">
       <h1 className="resume-name">{personalInfo.fullName}</h1>
-      <div className="resume-contact">
+      <div className="resume-contact flex-col">
         {personalInfo.address && (
           <div>
             <i className="" />
