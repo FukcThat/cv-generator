@@ -63,7 +63,9 @@ input {
   background-color: rgb(47, 47, 49);
 }
 
-.personal-info-form {
+.personal-info-form,
+.experience-info--form,
+.education-info--form {
   margin: 1rem;
   padding: 1.5rem;
   gap: 0.5rem;
