@@ -3,7 +3,15 @@ import InputGroup from "../general/InputGroup";
 export default function EducationInfoForm({
   educationalInfo,
   setEducationalInfo,
+  onCancel,
+  onDelete,
 }) {
+  const handleChange = (e) => {
+    setEducationalInfo({
+      ...educationalInfo,
+      [e.target.dataset.key]: e.target.value,
+    });
+  };
   return (
     <>
       <form className="education-info--form">
@@ -13,12 +21,7 @@ export default function EducationInfoForm({
           labelText="School / University / Educational Institute"
           placeholder="School / University / Educational Institute"
           value={educationalInfo.schoolName}
-          onChange={(e) => {
-            setEducationalInfo({
-              ...educationalInfo,
-              schoolName: e.target.value,
-            });
-          }}
+          onChange={handleChange}
           data-key="schoolName"
         />
 
@@ -28,12 +31,7 @@ export default function EducationInfoForm({
           labelText="Graduation Title / Degree"
           placeholder="Graduation Title / Degree"
           value={educationalInfo.degree}
-          onChange={(e) => {
-            setEducationalInfo({
-              ...educationalInfo,
-              degree: e.target.value,
-            });
-          }}
+          onChange={handleChange}
           data-key="degree"
         />
 
@@ -42,12 +40,7 @@ export default function EducationInfoForm({
           id="start-date"
           labelText="Start Date"
           value={educationalInfo.startDate}
-          onChange={(e) => {
-            setEducationalInfo({
-              ...educationalInfo,
-              startDate: e.target.value,
-            });
-          }}
+          onChange={handleChange}
           data-key="startDate"
         />
 
@@ -56,12 +49,7 @@ export default function EducationInfoForm({
           id="end-date"
           labelText="End Date"
           value={educationalInfo.endDate}
-          onChange={(e) => {
-            setEducationalInfo({
-              ...educationalInfo,
-              endDate: e.target.value,
-            });
-          }}
+          onChange={handleChange}
           data-key="endDate"
         />
 
@@ -70,14 +58,28 @@ export default function EducationInfoForm({
           id="description"
           labelText="Description and achievements"
           value={educationalInfo.description}
-          onChange={(e) => {
-            setEducationalInfo({
-              ...educationalInfo,
-              description: e.target.value,
-            });
-          }}
+          onChange={handleChange}
           data-key="description"
         />
+        {/* Save Button */}
+        <button
+          type="button"
+          onClick={() => setEducationalInfo(educationalInfo)}
+        >
+          Save
+        </button>
+
+        {/* Cancel Button */}
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
+
+        {/* Delete Button */}
+        {onDelete && (
+          <button type="button" onClick={onDelete}>
+            Delete
+          </button>
+        )}
       </form>
     </>
   );

@@ -1,6 +1,6 @@
 import "./styles/App.css";
 import Resume from "./components/Resume";
-import Sidebar from "./Sidebar";
+import Sidebar from "./components/Sidebar";
 import { useState } from "react";
 
 function App() {
@@ -12,22 +12,24 @@ function App() {
     birthdate: new Date(),
   });
 
-  const [educationalInfo, setEducationalInfo] = useState({
-    schoolName: "",
-    degree: "",
-    startDate: new Date(),
-    endDate: new Date(),
-    description: "",
-  });
+  const [educationalInfo, setEducationalInfo] = useState(
+    []
+    // {schoolName: "",
+    // degree: "",
+    // startDate: new Date(),
+    // endDate: new Date(),
+    // description: "",}
+  );
 
-  const [experienceInfo, setExperienceInfo] = useState({
-    jobTitle: "",
-    companyName: "",
-    description: "",
-    companyLocation: "",
-    startDate: new Date(),
-    endDate: new Date(),
-  });
+  const [experienceInfo, setExperienceInfo] = useState(
+    []
+    // {jobTitle: "",
+    // companyName: "",
+    // description: "",
+    // companyLocation: "",
+    // startDate: new Date(),
+    // endDate: new Date(),}
+  );
 
   return (
     <>

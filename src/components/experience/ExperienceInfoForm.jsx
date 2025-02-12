@@ -3,7 +3,16 @@ import InputGroup from "../general/InputGroup";
 export default function ExperienceInfoForm({
   experienceInfo,
   setExperienceInfo,
+  onCancel,
+  onDelete,
 }) {
+  const handleChange = (e) => {
+    setExperienceInfo({
+      ...experienceInfo,
+      [e.target.dataset.key]: e.target.value,
+    });
+  };
+
   return (
     <>
       <form className="experience-info--form">
@@ -13,12 +22,7 @@ export default function ExperienceInfoForm({
           labelText="Job title / Position"
           placeholder="Job title / Position"
           value={experienceInfo.jobTitle}
-          onChange={(e) => {
-            setExperienceInfo({
-              ...experienceInfo,
-              jobTitle: e.target.value,
-            });
-          }}
+          onChange={handleChange}
           data-key="jobTitle"
         />
 
@@ -28,12 +32,7 @@ export default function ExperienceInfoForm({
           labelText="Company Name"
           placeholder="Company Name"
           value={experienceInfo.companyName}
-          onChange={(e) => {
-            setExperienceInfo({
-              ...experienceInfo,
-              companyName: e.target.value,
-            });
-          }}
+          onChange={handleChange}
           data-key="companyName"
         />
 
@@ -42,12 +41,7 @@ export default function ExperienceInfoForm({
           id="description"
           labelText="Description and achievements"
           value={experienceInfo.description}
-          onChange={(e) => {
-            setExperienceInfo({
-              ...experienceInfo,
-              description: e.target.value,
-            });
-          }}
+          onChange={handleChange}
           data-key="description"
         />
 
@@ -57,12 +51,7 @@ export default function ExperienceInfoForm({
           labelText="Company Location"
           placeholder="Company Location"
           value={experienceInfo.companyLocation}
-          onChange={(e) => {
-            setExperienceInfo({
-              ...experienceInfo,
-              companyLocation: e.target.value,
-            });
-          }}
+          onChange={handleChange}
           data-key="companyLocation"
         />
 
@@ -71,12 +60,7 @@ export default function ExperienceInfoForm({
           id="start-date"
           labelText="Start Date"
           value={experienceInfo.startDate}
-          onChange={(e) => {
-            setexperienceInfo({
-              ...experienceInfo,
-              startDate: e.target.value,
-            });
-          }}
+          onChange={handleChange}
           data-key="startDate"
         />
 
@@ -85,14 +69,21 @@ export default function ExperienceInfoForm({
           id="end-date"
           labelText="End Date"
           value={experienceInfo.endDate}
-          onChange={(e) => {
-            setexperienceInfo({
-              ...experienceInfo,
-              endDate: e.target.value,
-            });
-          }}
+          onChange={handleChange}
           data-key="endDate"
         />
+
+        <button type="button" onClick={() => setExperienceInfo(experienceInfo)}>
+          Save
+        </button>
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
+        {onDelete && (
+          <button type="button" onClick={onDelete}>
+            Delete
+          </button>
+        )}
       </form>
     </>
   );
