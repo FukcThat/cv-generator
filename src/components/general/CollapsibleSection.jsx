@@ -9,7 +9,7 @@ export default function CollapsibleSection({ sectionTitle, children }) {
         <span>{sectionTitle}</span>
         <span className={`chevron ${isOpen ? "open" : ""}`}>&#9662;</span>
       </button>
-      {isOpen && <div className="collapsible-content">{children}</div>}
+      {isOpen && <div className="collapsible-content flex-col">{children}</div>}
     </div>
   );
 }
