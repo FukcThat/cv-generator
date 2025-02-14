@@ -1,3 +1,4 @@
+import { useState } from "react";
 import InputGroup from "../general/InputGroup";
 
 export default function ExperienceInfoForm({
@@ -6,9 +7,11 @@ export default function ExperienceInfoForm({
   onCancel,
   onDelete,
 }) {
+  const [formData, setFormData] = useState({ ...experienceInfo });
+
   const handleChange = (e) => {
-    setExperienceInfo({
-      ...experienceInfo,
+    setFormData({
+      ...formData,
       [e.target.dataset.key]: e.target.value,
     });
   };
@@ -21,7 +24,7 @@ export default function ExperienceInfoForm({
           id="job-title"
           labelText="Job title / Position"
           placeholder="Job title / Position"
-          value={experienceInfo.jobTitle}
+          value={formData.jobTitle}
           onChange={handleChange}
           data-key="jobTitle"
         />
@@ -31,7 +34,7 @@ export default function ExperienceInfoForm({
           id="company-name"
           labelText="Company Name"
           placeholder="Company Name"
-          value={experienceInfo.companyName}
+          value={formData.companyName}
           onChange={handleChange}
           data-key="companyName"
         />
@@ -40,7 +43,7 @@ export default function ExperienceInfoForm({
           type="textarea"
           id="description"
           labelText="Description and achievements"
-          value={experienceInfo.description}
+          value={formData.description}
           onChange={handleChange}
           data-key="description"
         />
@@ -50,7 +53,7 @@ export default function ExperienceInfoForm({
           id="company-location"
           labelText="Company Location"
           placeholder="Company Location"
-          value={experienceInfo.companyLocation}
+          value={formData.companyLocation}
           onChange={handleChange}
           data-key="companyLocation"
         />
@@ -59,7 +62,7 @@ export default function ExperienceInfoForm({
           type="date"
           id="start-date"
           labelText="Start Date"
-          value={experienceInfo.startDate}
+          value={formData.startDate}
           onChange={handleChange}
           data-key="startDate"
         />
@@ -68,12 +71,15 @@ export default function ExperienceInfoForm({
           type="date"
           id="end-date"
           labelText="End Date"
-          value={experienceInfo.endDate}
+          value={formData.endDate}
           onChange={handleChange}
           data-key="endDate"
         />
 
-        <button type="button" onClick={() => setExperienceInfo(experienceInfo)}>
+        <button
+          type="button"
+          onClick={() => setExperienceInfo({ ...formData })}
+        >
           Save
         </button>
         <button type="button" onClick={onCancel}>

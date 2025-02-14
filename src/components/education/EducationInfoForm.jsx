@@ -1,3 +1,4 @@
+import { useState } from "react";
 import InputGroup from "../general/InputGroup";
 
 export default function EducationInfoForm({
@@ -6,9 +7,11 @@ export default function EducationInfoForm({
   onCancel,
   onDelete,
 }) {
+  const [formData, setFormData] = useState({ ...educationalInfo });
+
   const handleChange = (e) => {
-    setEducationalInfo({
-      ...educationalInfo,
+    setFormData({
+      ...formData,
       [e.target.dataset.key]: e.target.value,
     });
   };
@@ -20,7 +23,7 @@ export default function EducationInfoForm({
           id="school-name"
           labelText="School / University / Educational Institute"
           placeholder="School / University / Educational Institute"
-          value={educationalInfo.schoolName}
+          value={formData.schoolName}
           onChange={handleChange}
           data-key="schoolName"
         />
@@ -30,7 +33,7 @@ export default function EducationInfoForm({
           id="degree"
           labelText="Graduation Title / Degree"
           placeholder="Graduation Title / Degree"
-          value={educationalInfo.degree}
+          value={formData.degree}
           onChange={handleChange}
           data-key="degree"
         />
@@ -39,7 +42,7 @@ export default function EducationInfoForm({
           type="date"
           id="start-date"
           labelText="Start Date"
-          value={educationalInfo.startDate}
+          value={formData.startDate}
           onChange={handleChange}
           data-key="startDate"
         />
@@ -48,7 +51,7 @@ export default function EducationInfoForm({
           type="date"
           id="end-date"
           labelText="End Date"
-          value={educationalInfo.endDate}
+          value={formData.endDate}
           onChange={handleChange}
           data-key="endDate"
         />
@@ -57,14 +60,14 @@ export default function EducationInfoForm({
           type="textarea"
           id="description"
           labelText="Description and achievements"
-          value={educationalInfo.description}
+          value={formData.description}
           onChange={handleChange}
           data-key="description"
         />
         {/* Save Button */}
         <button
           type="button"
-          onClick={() => setEducationalInfo(educationalInfo)}
+          onClick={() => setEducationalInfo({ ...formData })}
         >
           Save
         </button>

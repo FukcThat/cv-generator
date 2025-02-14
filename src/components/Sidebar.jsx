@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import EducationInfoForm from "./education/EducationInfoForm";
 import ExperienceInfoForm from "./experience/ExperienceInfoForm";
 import CollapsibleSection from "./general/CollapsibleSection";
@@ -17,6 +18,7 @@ export default function Sidebar({
 
   const addNewEducation = () =>
     setEditEducation({
+      id: uuidv4(),
       schoolName: "",
       degree: "",
       startDate: "",
@@ -25,6 +27,7 @@ export default function Sidebar({
     });
   const addNewExperience = () =>
     setEditExperience({
+      id: uuidv4(),
       jobTitle: "",
       companyName: "",
       companyLocation: "",
@@ -40,17 +43,25 @@ export default function Sidebar({
     editEntry,
     setEditEntry
   ) => {
-    if (editEntry?.index !== undefined) {
-      setState(
-        state.map((item, index) => (index === editEntry.index ? entry : item))
+    console.log("Saving Entry:", entry);
+
+    const existingEntry = state.some((item) => item.id === editEntry?.id);
+
+    if (existingEntry) {
+      console.log("updating existing entry");
+      setState((prev) =>
+        prev.map((item) => (item.id === editEntry.id ? entry : item))
       );
     } else {
-      setState([...state, entry]);
+      console.log("Adding new entry");
+      setState((prev) => [...prev, entry]);
     }
     setEditEntry(null);
   };
 
   const handleEducationSubmit = (entry) => {
+    console.log("handleEducationSubmit triggered");
+    console.log("Before update:", educationalInfo);
     handleEditSubmit(
       entry,
       educationalInfo,
@@ -58,6 +69,7 @@ export default function Sidebar({
       editEducation,
       setEditEducation
     );
+    console.log("After Update:", educationalInfo);
   };
 
   const handleExperienceSubmit = (entry) => {
@@ -70,16 +82,20 @@ export default function Sidebar({
     );
   };
 
-  const handleDeleteEducation = (deleteIndex) => {
-    setEducationalInfo([
-      educationalInfo.filter((entry, index) => index !== deleteIndex),
-    ]);
+  const handleDeleteEducation = (id) => {
+    setEducationalInfo((prev) => prev.filter((entry) => entry.id !== id));
+
+    if (editEducation?.id === id) {
+      setEditEducation(null);
+    }
   };
 
-  const handleDeleteExperience = (deleteIndex) => {
-    setExperienceInfo([
-      experienceInfo.filter((entry, index) => index !== deleteIndex),
-    ]);
+  const handleDeleteExperience = (id) => {
+    setExperienceInfo((prev) => prev.filter((entry) => entry?.id !== id));
+
+    if (editExperience?.id === id) {
+      setEditExperience(null);
+    }
   };
 
   return (
@@ -89,13 +105,13 @@ export default function Sidebar({
         setPersonalInfo={setPersonalInfo}
       />
       <CollapsibleSection sectionTitle="Education">
-        {educationalInfo.map((entry, index) => (
+        {educationalInfo.map((entry) => (
           <button
-            key={index}
+            key={entry.id}
             className="entry-btn"
-            onClick={() => setEditEducation({ ...entry, index })}
+            onClick={() => setEditEducation(entry)}
           >
-            {entry.schoolName || "Unnamed Education"}
+            {entry.schoolName}
           </button>
         ))}
         <button className="add-section-btn" onClick={addNewEducation}>
@@ -105,22 +121,23 @@ export default function Sidebar({
         {editEducation && (
           <EducationInfoForm
             educationalInfo={editEducation}
-            setEducationalInfo={handleEducationSubmit}
+            setEducationalInfo={(updatedEntry) => {
+              handleEducationSubmit(updatedEntry);
+            }}
             onCancel={() => setEditEducation(null)}
-            onDelete={() => handleDeleteEducation(editEducation.index)}
+            onDelete={() => handleDeleteEducation(editEducation.id)}
           />
         )}
       </CollapsibleSection>
 
       <CollapsibleSection sectionTitle="Experience">
-        {experienceInfo.map((entry, index) => (
+        {experienceInfo.map((entry) => (
           <button
-            key={index}
+            key={entry.id}
             className="entry-btn"
-            onClick={() => setEditExperience({ ...entry, index })}
+            onClick={() => setEditExperience(entry)}
           >
-            {" "}
-            {entry.companyName || "Unnamed Eperience"}
+            {entry.companyName}
           </button>
         ))}
         <button className="add-section-btn" onClick={addNewExperience}>
@@ -130,26 +147,14 @@ export default function Sidebar({
         {editExperience && (
           <ExperienceInfoForm
             experienceInfo={editExperience}
-            setExperienceInfo={handleExperienceSubmit}
+            setExperienceInfo={(updatedEntry) => {
+              handleExperienceSubmit(updatedEntry);
+            }}
             onCancel={() => setEditExperience(null)}
-            onDelete={() => handleDeleteExperience(editExperience.index)}
+            onDelete={() => handleDeleteExperience(editExperience.id)}
           />
         )}
       </CollapsibleSection>
-      {/* 
-      <CollapsibleSection sectionTitle={"Experience"}>
-        <ExperienceInfoForm
-          experienceInfo={experienceInfo}
-          setExperienceInfo={setExperienceInfo}
-        />
-      </CollapsibleSection>
-
-      <CollapsibleSection sectionTitle={"Education"}>
-        <EducationInfoForm
-          educationalInfo={educationalInfo}
-          setEducationalInfo={setEducationalInfo}
-        />
-      </CollapsibleSection> */}
     </div>
   );
 }
