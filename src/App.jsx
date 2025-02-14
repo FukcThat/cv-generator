@@ -43,7 +43,11 @@ function App() {
           setExperienceInfo={setExperienceInfo}
         />
         <div className="resume-container">
-          <Resume personalInfo={personalInfo} />
+          <Resume
+            personalInfo={personalInfo}
+            educationalInfo={educationalInfo}
+            experienceInfo={experienceInfo}
+          />
         </div>
       </div>
     </>
