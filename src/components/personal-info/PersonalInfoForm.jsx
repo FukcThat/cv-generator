@@ -55,7 +55,10 @@ export default function PersonalInfoForm({ personalInfo, setPersonalInfo }) {
           labelText="Date of birth"
           value={personalInfo.birthdate}
           onChange={(e) => {
-            setPersonalInfo({ ...personalInfo, birthdate: e.target.value });
+            setPersonalInfo({
+              ...personalInfo,
+              birthdate: new Date(e.target.value),
+            });
           }}
           data-key="birthdate"
           optional
