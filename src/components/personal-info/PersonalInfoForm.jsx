@@ -15,6 +15,7 @@ export default function PersonalInfoForm({ personalInfo, setPersonalInfo }) {
             setPersonalInfo({ ...personalInfo, fullName: e.target.value });
           }}
           data-key="fullName"
+          recommended
         />
         <InputGroup
           type="text"
@@ -26,6 +27,7 @@ export default function PersonalInfoForm({ personalInfo, setPersonalInfo }) {
             setPersonalInfo({ ...personalInfo, address: e.target.value });
           }}
           data-key="address"
+          recommended
         />
         <InputGroup
           type="tel"
@@ -37,6 +39,7 @@ export default function PersonalInfoForm({ personalInfo, setPersonalInfo }) {
             setPersonalInfo({ ...personalInfo, phoneNumber: e.target.value });
           }}
           data-key="phoneNumber"
+          recommended
         />
         <InputGroup
           type="email"
@@ -48,6 +51,7 @@ export default function PersonalInfoForm({ personalInfo, setPersonalInfo }) {
             setPersonalInfo({ ...personalInfo, email: e.target.value });
           }}
           data-key="email"
+          recommended
         />
         <InputGroup
           type="date"

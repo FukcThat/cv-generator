@@ -30,6 +30,11 @@
   }
 }
 
+label {
+  justify-content: space-between;
+  align-items: baseline;
+}
+
 input {
   height: 2rem;
   padding-inline: 0.5rem;
@@ -63,11 +68,29 @@ input {
   background-color: rgb(47, 47, 49);
 }
 
+.sidelabel--optional,
+.sidelabel--recommended {
+  color: rgb(140, 121, 121);
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-right: 0.25rem;
+}
+
 .collapsible-section {
   margin: 1rem;
   margin-bottom: 10px;
   border-radius: 5px;
   overflow: hidden;
+  transition: border-radius 0.3s ease-in-out;
+}
+
+.collapsible-section.open .collapsible-header {
+  border-radius: 5px 5px 0 0;
+}
+
+.collapsible-section.open .collapsible-content {
+  opacity: 1;
+  border-radius: 5px;
 }
 
 .collapsible-header {
@@ -80,6 +103,7 @@ input {
   cursor: pointer;
   border: none;
   font-size: 16px;
+  transition: border-radius 0.3s ease-in-out;
 }
 
 .chevron {
@@ -94,10 +118,18 @@ input {
   gap: 1rem;
   padding: 10px;
   background-color: rgb(59, 59, 62);
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out, opacity 0.1s ease-in-out;
 }
 
 .entry-btn {
   background-color: rgb(77, 77, 80);
+}
+
+.add-section-btn {
+  background-color: rgb(70, 85, 76);
 }
 
 .personal-info-form,

@@ -11,7 +11,7 @@ export default function InputGroup({
 }) {
   return (
     <div className="input-group flex-col">
-      <label htmlFor={id}>
+      <label htmlFor={id} className="flex-row">
         <span className="label-text">{labelText}</span>
         {optional && <span className="sidelabel--optional">optional</span>}
         {recommended && (
