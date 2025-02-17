@@ -98,12 +98,10 @@ input {
   padding: 10px;
   width: 100%;
   text-align: left;
-  display: flex;
   justify-content: space-between;
   cursor: pointer;
   border: none;
-  font-size: 16px;
-  transition: border-radius 0.3s ease-in-out;
+  font-size: 1rem;
 }
 
 .chevron {
@@ -119,9 +117,7 @@ input {
   padding: 10px;
   background-color: rgb(59, 59, 62);
   opacity: 0;
-  max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-in-out, opacity 0.1s ease-in-out;
 }
 
 .entry-btn {
@@ -130,6 +126,7 @@ input {
 
 .add-section-btn {
   background-color: rgb(70, 85, 76);
+  width: 100%;
 }
 
 .personal-info-form,
