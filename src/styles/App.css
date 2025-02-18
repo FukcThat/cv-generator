@@ -43,6 +43,10 @@ input {
   background-color: rgb(78, 76, 79);
 }
 
+ul {
+  padding-left: 0;
+}
+
 .flex-col {
   display: flex;
   flex-direction: column;
@@ -120,8 +124,37 @@ input {
   overflow: hidden;
 }
 
+.reorder-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .entry-btn {
   background-color: rgb(77, 77, 80);
+  box-shadow: 1px 1px 3px rgb(35, 34, 34);
+  padding: 0.5rem;
+  border-radius: 0.66rem;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.entry-btn:hover {
+  background-color: rgb(82, 88, 85);
+}
+
+.drag-handle {
+  font-size: 1.2rem;
+  padding-right: 8px;
+  cursor: grab !important;
+}
+
+.drag-handle:active {
+  cursor: grabbing !important;
 }
 
 .add-section-btn {

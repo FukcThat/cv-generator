@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { easeInOut, motion, AnimatePresence } from "framer-motion";
+import { easeInOut, motion, AnimatePresence, Reorder } from "framer-motion";
 import EducationInfoForm from "./education/EducationInfoForm";
 import ExperienceInfoForm from "./experience/ExperienceInfoForm";
 import CollapsibleSection from "./general/CollapsibleSection";
@@ -16,6 +16,9 @@ export default function Sidebar({
 }) {
   const [editEducation, setEditEducation] = useState(null);
   const [editExperience, setEditExperience] = useState(null);
+
+  const handleReorderEducation = (newOrder) => setEducationalInfo(newOrder);
+  const handleReorderExperience = (newOrder) => setExperienceInfo(newOrder);
 
   const addNewEducation = () =>
     setEditEducation({
@@ -101,20 +104,44 @@ export default function Sidebar({
 
   return (
     <div className="sidebar">
+      {/* Personal Info Form  */}
       <PersonalInfoForm
         personalInfo={personalInfo}
         setPersonalInfo={setPersonalInfo}
       />
+
+      {/* Education Info Form */}
       <CollapsibleSection sectionTitle="Education">
-        {educationalInfo.map((entry) => (
-          <button
-            key={entry.id}
-            className="entry-btn"
-            onClick={() => setEditEducation(entry)}
-          >
-            {entry.schoolName}
-          </button>
-        ))}
+        <Reorder.Group
+          axis="y"
+          values={educationalInfo}
+          onReorder={handleReorderEducation}
+          className="reorder-group"
+        >
+          {educationalInfo.map((entry) => (
+            <Reorder.Item
+              key={entry.id}
+              value={entry}
+              className="entry-btn"
+              whileDrag={{ scale: 1.05 }}
+            >
+              <motion.div
+                className="drag-handle"
+                whileHover={{ cursor: "grab" }}
+                whileTap={{ cursor: "grabbing" }}
+              >
+                ∷
+              </motion.div>
+              <div
+                key={entry.id}
+                className="entry-title"
+                onClick={() => setEditEducation(entry)}
+              >
+                {entry.schoolName}
+              </div>
+            </Reorder.Item>
+          ))}
+        </Reorder.Group>
         <button className="add-section-btn" onClick={addNewEducation}>
           + Education
         </button>
@@ -151,16 +178,38 @@ export default function Sidebar({
         </AnimatePresence>
       </CollapsibleSection>
 
+      {/* Experience Info Form */}
       <CollapsibleSection sectionTitle="Experience">
-        {experienceInfo.map((entry) => (
-          <button
-            key={entry.id}
-            className="entry-btn"
-            onClick={() => setEditExperience(entry)}
-          >
-            {entry.companyName}
-          </button>
-        ))}
+        <Reorder.Group
+          axis="y"
+          values={experienceInfo}
+          onReorder={handleReorderExperience}
+          className="reorder-group"
+        >
+          {experienceInfo.map((entry) => (
+            <Reorder.Item
+              key={entry.id}
+              value={entry}
+              className="entry-btn"
+              whileDrag={{ scale: 1.05 }}
+            >
+              <motion.div
+                className="drag-handle"
+                whileHover={{ cursor: "grab" }}
+                whileTap={{ cursor: "grabbing" }}
+              >
+                ∷
+              </motion.div>
+              <div
+                key={entry.id}
+                className="entry-title"
+                onClick={() => setEditExperience(entry)}
+              >
+                {entry.companyName}
+              </div>
+            </Reorder.Item>
+          ))}
+        </Reorder.Group>
         <button className="add-section-btn" onClick={addNewExperience}>
           + Experience
         </button>
