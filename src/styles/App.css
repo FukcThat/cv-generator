@@ -182,8 +182,6 @@ ul {
 }
 
 .resume-container {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
   margin: 4rem;
   padding-inline: 8mm;
   height: 297mm;
@@ -193,6 +191,18 @@ ul {
   border: 1px solid rgb(148, 149, 149);
 }
 
+.resume-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
 .resume-contact {
   gap: 1rem;
+  grid-column: 1;
+  grid-row: span 2;
+}
+
+.resume-section {
+  margin-top: 2rem;
+  grid-column: 2;
 }

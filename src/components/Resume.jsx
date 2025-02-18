@@ -9,11 +9,11 @@ export default function Resume({
   return (
     <div className="resume-page flex-col">
       <div className="resume-layout">
-        <section className="resume-section">
+        <section className="resume-contact">
           <PersonalInfoSection personalInfo={personalInfo} />
         </section>
 
-        <section>
+        <section className="resume-section">
           <h2>Education</h2>
           {educationalInfo.length > 0 ? (
             educationalInfo.map((educationEntry) => (
@@ -33,7 +33,7 @@ export default function Resume({
           )}
         </section>
 
-        <section>
+        <section className="resume-section">
           <h2>Experience</h2>
           {experienceInfo.length > 0 ? (
             experienceInfo.map((experienceEntry) => (

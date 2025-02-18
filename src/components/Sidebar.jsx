@@ -124,6 +124,7 @@ export default function Sidebar({
               value={entry}
               className="entry-btn"
               whileDrag={{ scale: 1.05 }}
+              onClick={() => setEditEducation(entry)}
             >
               <motion.div
                 className="drag-handle"
@@ -132,11 +133,7 @@ export default function Sidebar({
               >
                 ∷
               </motion.div>
-              <div
-                key={entry.id}
-                className="entry-title"
-                onClick={() => setEditEducation(entry)}
-              >
+              <div key={entry.id} className="entry-title">
                 {entry.schoolName}
               </div>
             </Reorder.Item>
@@ -192,6 +189,7 @@ export default function Sidebar({
               value={entry}
               className="entry-btn"
               whileDrag={{ scale: 1.05 }}
+              onClick={() => setEditExperience(entry)}
             >
               <motion.div
                 className="drag-handle"
@@ -200,11 +198,7 @@ export default function Sidebar({
               >
                 ∷
               </motion.div>
-              <div
-                key={entry.id}
-                className="entry-title"
-                onClick={() => setEditExperience(entry)}
-              >
+              <div key={entry.id} className="entry-title">
                 {entry.companyName}
               </div>
             </Reorder.Item>
@@ -221,8 +215,8 @@ export default function Sidebar({
               className="collapsible-content"
               initial={{ height: 0, opacity: 0 }}
               animate={{
-                height: editEducation ? "auto" : 0,
-                opacity: editEducation ? 1 : 0,
+                height: editExperience ? "auto" : 0,
+                opacity: editExperience ? 1 : 0,
               }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3, ease: easeInOut }}
