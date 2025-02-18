@@ -18,7 +18,7 @@ export default function ExperienceInfoForm({
 
   return (
     <>
-      <form className="experience-info--form">
+      <form className="experience-info--form flex-col">
         <InputGroup
           type="text"
           id="job-title"
@@ -76,20 +76,22 @@ export default function ExperienceInfoForm({
           data-key="endDate"
         />
 
-        <button
-          type="button"
-          onClick={() => setExperienceInfo({ ...formData })}
-        >
-          Save
-        </button>
-        <button type="button" onClick={onCancel}>
-          Cancel
-        </button>
-        {onDelete && (
-          <button type="button" onClick={onDelete}>
-            Delete
+        <div className="form-control-btns flex-row">
+          <button
+            type="button"
+            onClick={() => setExperienceInfo({ ...formData })}
+          >
+            Save
           </button>
-        )}
+          <button type="button" onClick={onCancel}>
+            Cancel
+          </button>
+          {onDelete && (
+            <button type="button" onClick={onDelete}>
+              Delete
+            </button>
+          )}
+        </div>
       </form>
     </>
   );

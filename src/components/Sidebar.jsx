@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { easeInOut, motion, AnimatePresence } from "framer-motion";
 import EducationInfoForm from "./education/EducationInfoForm";
 import ExperienceInfoForm from "./experience/ExperienceInfoForm";
 import CollapsibleSection from "./general/CollapsibleSection";
@@ -118,16 +119,36 @@ export default function Sidebar({
           + Education
         </button>
 
-        {editEducation && (
-          <EducationInfoForm
-            educationalInfo={editEducation}
-            setEducationalInfo={(updatedEntry) => {
-              handleEducationSubmit(updatedEntry);
-            }}
-            onCancel={() => setEditEducation(null)}
-            onDelete={() => handleDeleteEducation(editEducation.id)}
-          />
-        )}
+        <AnimatePresence>
+          {editEducation && (
+            <motion.div
+              key={editEducation.id}
+              className="collapsible-content"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{
+                height: editEducation ? "auto" : 0,
+                opacity: editEducation ? 1 : 0,
+              }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: easeInOut }}
+              style={{ overflow: "hidden" }}
+              onAnimationComplete={(definition) => {
+                if (definition === "exit") {
+                  setTimeout(() => setEditEducation(null), 50);
+                }
+              }}
+            >
+              <EducationInfoForm
+                educationalInfo={editEducation}
+                setEducationalInfo={(updatedEntry) => {
+                  handleEducationSubmit(updatedEntry);
+                }}
+                onCancel={() => setEditEducation(null)}
+                onDelete={() => handleDeleteEducation(editEducation.id)}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </CollapsibleSection>
 
       <CollapsibleSection sectionTitle="Experience">
@@ -144,16 +165,36 @@ export default function Sidebar({
           + Experience
         </button>
 
-        {editExperience && (
-          <ExperienceInfoForm
-            experienceInfo={editExperience}
-            setExperienceInfo={(updatedEntry) => {
-              handleExperienceSubmit(updatedEntry);
-            }}
-            onCancel={() => setEditExperience(null)}
-            onDelete={() => handleDeleteExperience(editExperience.id)}
-          />
-        )}
+        <AnimatePresence>
+          {editExperience && (
+            <motion.div
+              key={editExperience.id}
+              className="collapsible-content"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{
+                height: editEducation ? "auto" : 0,
+                opacity: editEducation ? 1 : 0,
+              }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: easeInOut }}
+              style={{ overflow: "hidden" }}
+              onAnimationComplete={(definition) => {
+                if (definition === "exit") {
+                  setTimeout(() => setEditExperience(null), 50);
+                }
+              }}
+            >
+              <ExperienceInfoForm
+                experienceInfo={editExperience}
+                setExperienceInfo={(updatedEntry) => {
+                  handleExperienceSubmit(updatedEntry);
+                }}
+                onCancel={() => setEditExperience(null)}
+                onDelete={() => handleDeleteExperience(editExperience.id)}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </CollapsibleSection>
     </div>
   );

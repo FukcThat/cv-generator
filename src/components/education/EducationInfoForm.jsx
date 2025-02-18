@@ -17,7 +17,7 @@ export default function EducationInfoForm({
   };
   return (
     <>
-      <form className="education-info--form">
+      <form className="education-info--form flex-col">
         <InputGroup
           type="text"
           id="school-name"
@@ -64,25 +64,28 @@ export default function EducationInfoForm({
           onChange={handleChange}
           data-key="description"
         />
-        {/* Save Button */}
-        <button
-          type="button"
-          onClick={() => setEducationalInfo({ ...formData })}
-        >
-          Save
-        </button>
 
-        {/* Cancel Button */}
-        <button type="button" onClick={onCancel}>
-          Cancel
-        </button>
-
-        {/* Delete Button */}
-        {onDelete && (
-          <button type="button" onClick={onDelete}>
-            Delete
+        <div className="form-control-btns flex-row">
+          {/* Save Button */}
+          <button
+            type="button"
+            onClick={() => setEducationalInfo({ ...formData })}
+          >
+            Save
           </button>
-        )}
+
+          {/* Cancel Button */}
+          <button type="button" onClick={onCancel}>
+            Cancel
+          </button>
+
+          {/* Delete Button */}
+          {onDelete && (
+            <button type="button" onClick={onDelete}>
+              Delete
+            </button>
+          )}
+        </div>
       </form>
     </>
   );
