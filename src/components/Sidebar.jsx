@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { easeInOut, motion, AnimatePresence, Reorder } from "framer-motion";
+import LanguageInfoForm from "./personal-info/LanguageInfoForm";
 import EducationInfoForm from "./education/EducationInfoForm";
 import ExperienceInfoForm from "./experience/ExperienceInfoForm";
 import CollapsibleSection from "./general/CollapsibleSection";
@@ -9,16 +10,28 @@ import PersonalInfoForm from "./personal-info/PersonalInfoForm";
 export default function Sidebar({
   personalInfo,
   setPersonalInfo,
+  languageInfo,
+  setLanguageInfo,
   educationalInfo,
   setEducationalInfo,
   experienceInfo,
   setExperienceInfo,
 }) {
+  const [editLanguage, setEditLanguage] = useState(null);
   const [editEducation, setEditEducation] = useState(null);
   const [editExperience, setEditExperience] = useState(null);
 
+  const handleReorderLanguage = (newOrder) => setLanguageInfo(newOrder);
   const handleReorderEducation = (newOrder) => setEducationalInfo(newOrder);
   const handleReorderExperience = (newOrder) => setExperienceInfo(newOrder);
+
+  const addNewLanguage = () =>
+    setEditLanguage({
+      id: uuidv4(),
+      languageName: "",
+      languageLevel: "",
+      languageCertification: "",
+    });
 
   const addNewEducation = () =>
     setEditEducation({
@@ -29,6 +42,7 @@ export default function Sidebar({
       endDate: "",
       description: "",
     });
+
   const addNewExperience = () =>
     setEditExperience({
       id: uuidv4(),
@@ -63,6 +77,16 @@ export default function Sidebar({
     setEditEntry(null);
   };
 
+  const handleLanguageSubmit = (entry) => {
+    handleEditSubmit(
+      entry,
+      languageInfo,
+      setLanguageInfo,
+      editLanguage,
+      setEditLanguage
+    );
+  };
+
   const handleEducationSubmit = (entry) => {
     console.log("handleEducationSubmit triggered");
     console.log("Before update:", educationalInfo);
@@ -84,6 +108,14 @@ export default function Sidebar({
       editExperience,
       setEditExperience
     );
+  };
+
+  const handleDeleteLanguage = (id) => {
+    setLanguageInfo((prev) => prev.filter((entry) => entry.id !== id));
+
+    if (editLanguage?.id === id) {
+      setEditLanguage(null);
+    }
   };
 
   const handleDeleteEducation = (id) => {
@@ -109,6 +141,72 @@ export default function Sidebar({
         personalInfo={personalInfo}
         setPersonalInfo={setPersonalInfo}
       />
+
+      {/* Language Info Form */}
+      <CollapsibleSection sectionTitle="Languages">
+        <Reorder.Group
+          axis="y"
+          values={languageInfo}
+          onReorder={handleReorderLanguage}
+          className="reorder-group"
+        >
+          {languageInfo.map((entry) => (
+            <Reorder.Item
+              key={entry.id}
+              value={entry}
+              className="entry-btn"
+              whileDrag={{ scale: 1.05 }}
+              onClick={() => setEditLanguage(entry)}
+            >
+              <motion.div
+                className="drag-handle"
+                whileHover={{ cursor: "grab" }}
+                whileTap={{ cursor: "grabbing" }}
+              >
+                ∷
+              </motion.div>
+              <div key={entry.id} className="entry-title">
+                {entry.languageName}
+                {" - "} {entry.languageLevel}
+              </div>
+            </Reorder.Item>
+          ))}
+        </Reorder.Group>
+        <button className="add-section-btn" onClick={addNewLanguage}>
+          + Language
+        </button>
+
+        <AnimatePresence>
+          {editLanguage && (
+            <motion.div
+              key={editLanguage.id}
+              className="collapsible-content"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{
+                height: editLanguage ? "auto" : 0,
+                opacity: editLanguage ? 1 : 0,
+              }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: easeInOut }}
+              style={{ overflow: "hidden" }}
+              onAnimationComplete={(definition) => {
+                if (definition === "exit") {
+                  setTimeout(() => setEditLanguage(null), 50);
+                }
+              }}
+            >
+              <LanguageInfoForm
+                languageInfo={editLanguage}
+                setLanguageInfo={(updatedEntry) => {
+                  handleLanguageSubmit(updatedEntry);
+                }}
+                onCancel={() => setEditLanguage(null)}
+                onDelete={() => handleDeleteLanguage(editLanguage.id)}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </CollapsibleSection>
 
       {/* Education Info Form */}
       <CollapsibleSection sectionTitle="Education">

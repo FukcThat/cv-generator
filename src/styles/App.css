@@ -199,7 +199,10 @@ ul {
 .resume-contact {
   gap: 1rem;
   grid-column: 1;
-  grid-row: span 2;
+}
+
+.resume-language {
+  grid-column: 1;
 }
 
 .resume-section {

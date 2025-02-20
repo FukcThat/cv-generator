@@ -1,8 +1,8 @@
-import PersonalInfoForm from "./personal-info/PersonalInfoForm";
 import PersonalInfoSection from "./personal-info/PersonalInfoSection";
 
 export default function Resume({
   personalInfo,
+  languageInfo,
   educationalInfo,
   experienceInfo,
 }) {
@@ -11,6 +11,21 @@ export default function Resume({
       <div className="resume-layout">
         <section className="resume-contact">
           <PersonalInfoSection personalInfo={personalInfo} />
+        </section>
+
+        <section className="resume-language">
+          <h2>Languages</h2>
+          {languageInfo.length > 0 ? (
+            languageInfo.map((languageEntry) => (
+              <div key={languageEntry.id} className="resume-entry">
+                <h4>{languageEntry.languageName}</h4>
+                <p>{languageEntry.languageLevel}</p>
+                <p>{languageEntry.languageCertification}</p>
+              </div>
+            ))
+          ) : (
+            <p>No languages added.</p>
+          )}
         </section>
 
         <section className="resume-section">

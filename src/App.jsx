@@ -23,6 +23,18 @@ function App() {
       : defaultData
   );
 
+  const [languageInfo, setLanguageInfo] = useState(
+    localStorage.getItem("languageInfo")
+      ? JSON.parse(localStorage.getItem("languageInfo"))
+      : []
+  );
+
+  const [skillsInfo, setSkillsInfo] = useState(
+    localStorage.getItem("skillsInfo")
+      ? JSON.parse(localStorage.getItem("skillsInfo"))
+      : []
+  );
+
   const [educationalInfo, setEducationalInfo] = useState(
     localStorage.getItem("educationalInfo")
       ? JSON.parse(localStorage.getItem("educationalInfo"))
@@ -40,6 +52,14 @@ function App() {
   }, [personalInfo]);
 
   useEffect(() => {
+    localStorage.setItem("languageInfo", JSON.stringify(languageInfo));
+  }, [languageInfo]);
+
+  useEffect(() => {
+    localStorage.setItem("skillsInfo", JSON.stringify(skillsInfo));
+  }, [skillsInfo]);
+
+  useEffect(() => {
     localStorage.setItem("educationalInfo", JSON.stringify(educationalInfo));
   }, [educationalInfo]);
 
@@ -53,6 +73,10 @@ function App() {
         <Sidebar
           personalInfo={personalInfo}
           setPersonalInfo={setPersonalInfo}
+          languageInfo={languageInfo}
+          setLanguageInfo={setLanguageInfo}
+          skillsInfo={skillsInfo}
+          setSkillsInfo={setSkillsInfo}
           educationalInfo={educationalInfo}
           setEducationalInfo={setEducationalInfo}
           experienceInfo={experienceInfo}
@@ -61,6 +85,7 @@ function App() {
         <div className="resume-container">
           <Resume
             personalInfo={personalInfo}
+            languageInfo={languageInfo}
             educationalInfo={educationalInfo}
             experienceInfo={experienceInfo}
           />
