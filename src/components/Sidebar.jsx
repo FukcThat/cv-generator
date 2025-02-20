@@ -6,24 +6,35 @@ import EducationInfoForm from "./education/EducationInfoForm";
 import ExperienceInfoForm from "./experience/ExperienceInfoForm";
 import CollapsibleSection from "./general/CollapsibleSection";
 import PersonalInfoForm from "./personal-info/PersonalInfoForm";
+import SkillsInfoForm from "./personal-info/SkillsInfoForm";
 
 export default function Sidebar({
   personalInfo,
   setPersonalInfo,
   languageInfo,
   setLanguageInfo,
+  skillsInfo,
+  setSkillsInfo,
   educationalInfo,
   setEducationalInfo,
   experienceInfo,
   setExperienceInfo,
 }) {
+  const [editSkill, setEditSkill] = useState(null);
   const [editLanguage, setEditLanguage] = useState(null);
   const [editEducation, setEditEducation] = useState(null);
   const [editExperience, setEditExperience] = useState(null);
 
+  const handleReorderSkills = (newOrder) => setSkillsInfo(newOrder);
   const handleReorderLanguage = (newOrder) => setLanguageInfo(newOrder);
   const handleReorderEducation = (newOrder) => setEducationalInfo(newOrder);
   const handleReorderExperience = (newOrder) => setExperienceInfo(newOrder);
+
+  const addNewSkill = () =>
+    setEditSkill({
+      id: uuidv4(),
+      skillName: "",
+    });
 
   const addNewLanguage = () =>
     setEditLanguage({
@@ -77,6 +88,10 @@ export default function Sidebar({
     setEditEntry(null);
   };
 
+  const handleSkillSubmit = (entry) => {
+    handleEditSubmit(entry, skillsInfo, setSkillsInfo, editSkill, setEditSkill);
+  };
+
   const handleLanguageSubmit = (entry) => {
     handleEditSubmit(
       entry,
@@ -110,6 +125,14 @@ export default function Sidebar({
     );
   };
 
+  const handleDeleteSkill = (id) => {
+    setSkillsInfo((prev) => prev.filter((entry) => entry.id !== id));
+
+    if (editSkill?.id === id) {
+      setEditSkill(null);
+    }
+  };
+
   const handleDeleteLanguage = (id) => {
     setLanguageInfo((prev) => prev.filter((entry) => entry.id !== id));
 
@@ -141,6 +164,71 @@ export default function Sidebar({
         personalInfo={personalInfo}
         setPersonalInfo={setPersonalInfo}
       />
+
+      {/* Skills Info Form */}
+      <CollapsibleSection sectionTitle="Skills">
+        <Reorder.Group
+          axis="y"
+          values={skillsInfo}
+          onReorder={handleReorderSkills}
+          className="reorder-group"
+        >
+          {skillsInfo.map((entry) => (
+            <Reorder.Item
+              key={entry.id}
+              value={entry}
+              className="entry-btn"
+              whileDrag={{ scale: 1.05 }}
+              onClick={() => setEditSkill(entry)}
+            >
+              <motion.div
+                className="drag-handle"
+                whileHover={{ cursor: "grab" }}
+                whileTap={{ cursor: "grabbing" }}
+              >
+                ∷
+              </motion.div>
+              <div key={entry.id} className="entry-title">
+                {entry.skillName}
+              </div>
+            </Reorder.Item>
+          ))}
+        </Reorder.Group>
+        <button className="add-section-btn" onClick={addNewSkill}>
+          + Skill
+        </button>
+
+        <AnimatePresence>
+          {editSkill && (
+            <motion.div
+              key={editSkill.id}
+              className="collapsible-content"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{
+                height: editSkill ? "auto" : 0,
+                opacity: editSkill ? 1 : 0,
+              }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: easeInOut }}
+              style={{ overflow: "hidden" }}
+              onAnimationComplete={(definition) => {
+                if (definition === "exit") {
+                  setTimeout(() => setEditSkill(null), 50);
+                }
+              }}
+            >
+              <SkillsInfoForm
+                languageInfo={editSkill}
+                setLanguageInfo={(updatedEntry) => {
+                  handleSkillSubmit(updatedEntry);
+                }}
+                onCancel={() => setEditSkill(null)}
+                onDelete={() => handleDeleteSkill(editSkill.id)}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </CollapsibleSection>
 
       {/* Language Info Form */}
       <CollapsibleSection sectionTitle="Languages">

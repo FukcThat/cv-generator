@@ -85,6 +85,7 @@ function App() {
         <div className="resume-container">
           <Resume
             personalInfo={personalInfo}
+            skillsInfo={skillsInfo}
             languageInfo={languageInfo}
             educationalInfo={educationalInfo}
             experienceInfo={experienceInfo}

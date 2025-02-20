@@ -201,7 +201,8 @@ ul {
   grid-column: 1;
 }
 
-.resume-language {
+.resume-language,
+.resume-skills {
   grid-column: 1;
 }
 

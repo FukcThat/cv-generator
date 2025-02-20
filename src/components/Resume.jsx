@@ -2,6 +2,7 @@ import PersonalInfoSection from "./personal-info/PersonalInfoSection";
 
 export default function Resume({
   personalInfo,
+  skillsInfo,
   languageInfo,
   educationalInfo,
   experienceInfo,
@@ -11,6 +12,19 @@ export default function Resume({
       <div className="resume-layout">
         <section className="resume-contact">
           <PersonalInfoSection personalInfo={personalInfo} />
+        </section>
+
+        <section className="resume-skills">
+          <h2>Skills</h2>
+          {skillsInfo.length > 0 ? (
+            skillsInfo.map((skillEntry) => (
+              <div key={skillEntry.id} className="resume-entry">
+                <h4>{skillEntry.skillName}</h4>
+              </div>
+            ))
+          ) : (
+            <p>No skills added.</p>
+          )}
         </section>
 
         <section className="resume-language">
