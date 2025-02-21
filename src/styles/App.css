@@ -80,6 +80,31 @@ ul {
   margin-right: 0.25rem;
 }
 
+.layout-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.layout-button {
+  border: 2px solid transparent;
+  background: none;
+  padding: 5px;
+  cursor: pointer;
+  transition: border-color 0.2s ease-in-out;
+  text-align: center;
+}
+
+.layout-button img {
+  width: 80px; /* Adjust size */
+  height: auto;
+  border-radius: 5px;
+}
+
+.layout-button.selected {
+  border-color: #007bff;
+}
+
 .collapsible-section {
   margin: 1rem;
   margin-bottom: 10px;
@@ -207,6 +232,5 @@ ul {
 }
 
 .resume-section {
-  margin-top: 2rem;
   grid-column: 2;
 }

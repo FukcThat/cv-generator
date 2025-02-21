@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { easeInOut, motion, AnimatePresence, Reorder } from "framer-motion";
+import LayoutForm from "./general/LayoutForm";
 import LanguageInfoForm from "./personal-info/LanguageInfoForm";
 import EducationInfoForm from "./education/EducationInfoForm";
 import ExperienceInfoForm from "./experience/ExperienceInfoForm";
@@ -9,6 +10,8 @@ import PersonalInfoForm from "./personal-info/PersonalInfoForm";
 import SkillsInfoForm from "./personal-info/SkillsInfoForm";
 
 export default function Sidebar({
+  selectedLayout,
+  setSelectedLayout,
   personalInfo,
   setPersonalInfo,
   languageInfo,
@@ -159,6 +162,11 @@ export default function Sidebar({
 
   return (
     <div className="sidebar">
+      <LayoutForm
+        selectedLayout={selectedLayout}
+        setSelectedLayout={setSelectedLayout}
+      />
+
       {/* Personal Info Form  */}
       <PersonalInfoForm
         personalInfo={personalInfo}
@@ -218,8 +226,8 @@ export default function Sidebar({
               }}
             >
               <SkillsInfoForm
-                languageInfo={editSkill}
-                setLanguageInfo={(updatedEntry) => {
+                skillsInfo={editSkill}
+                setSkillsInfo={(updatedEntry) => {
                   handleSkillSubmit(updatedEntry);
                 }}
                 onCancel={() => setEditSkill(null)}

@@ -7,6 +7,14 @@ export default function ExperienceInfoForm({
   onCancel,
   onDelete,
 }) {
+  const [formData, setFormData] = useState({ ...experienceInfo });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.dataset.key]: e.target.value,
+    });
+  };
   return (
     <>
       <form className="experience-info--form flex-col">

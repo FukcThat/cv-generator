@@ -12,6 +12,8 @@ const defaultData = {
 };
 
 function App() {
+  const [selectedLayout, setSelectedLayout] = useState("personalLeft");
+
   const [personalInfo, setPersonalInfo] = useState(
     localStorage.getItem("personalInfo")
       ? {
@@ -71,6 +73,8 @@ function App() {
     <>
       <div className="page-container flex-row">
         <Sidebar
+          selectedLayout={selectedLayout}
+          setSelectedLayout={setSelectedLayout}
           personalInfo={personalInfo}
           setPersonalInfo={setPersonalInfo}
           languageInfo={languageInfo}
@@ -84,6 +88,7 @@ function App() {
         />
         <div className="resume-container">
           <Resume
+            selectedLayout={selectedLayout}
             personalInfo={personalInfo}
             skillsInfo={skillsInfo}
             languageInfo={languageInfo}
