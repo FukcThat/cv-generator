@@ -12,6 +12,8 @@ export const layouts = {
     name: "Top Down",
     gridTemplateColumns: "1fr",
     // image: "assets/layouts/personalTop.png",
-    sections: ["personal", "experience", "education", "skills", "language"],
+    sections: {
+      full: ["personal", "experience", "education", "skills", "language"],
+    },
   },
 };

@@ -15,7 +15,7 @@ export default function LayoutForm({ selectedLayout, setSelectedLayout }) {
               if (typeof setSelectedLayout === "function") {
                 setSelectedLayout(layoutKey);
               } else {
-                console.error("setSelectedLLayout is not a function");
+                console.error("setSelectedLayout is not a function");
               }
             }}
           >
