@@ -15,6 +15,7 @@ export default function ResumeLayout({
 }) {
   const layout = layouts[selectedLayout] || layouts["personalLeft"];
 
+  console.log("Resume layout: educational info - ", educationalInfo);
   return (
     <div
       className="resume-layout"

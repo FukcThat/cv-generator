@@ -14,7 +14,7 @@ export default function Resume({
         personalInfo={personalInfo}
         skillsInfo={skillsInfo}
         languageInfo={languageInfo}
-        educationInfo={educationalInfo}
+        educationalInfo={educationalInfo}
         experienceInfo={experienceInfo}
         selectedLayout={selectedLayout}
       />
