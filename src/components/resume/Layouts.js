@@ -13,7 +13,7 @@ export const layouts = {
     gridTemplateColumns: "1fr",
     // image: "assets/layouts/personalTop.png",
     sections: {
-      full: ["personal", "experience", "education", "skills", "language"],
+      full: ["personal", "experience", "education", "skills", "languages"],
     },
   },
 };

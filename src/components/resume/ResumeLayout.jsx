@@ -26,25 +26,45 @@ export default function ResumeLayout({
         alignItems: "start",
       }}
     >
-      {Object.entries(layout.sections).map(([columnKey, sections]) => (
-        <div key={columnKey} className="resume-column">
-          {sections.includes("personal") && (
+      {layout.sections.full ? (
+        <div className="resume-column">
+          {layout.sections.full.includes("personal") && (
             <PersonalInfoSection personalInfo={personalInfo} />
           )}
-          {sections.includes("skills") && (
+          {layout.sections.full.includes("skills") && (
             <SkillsSection skillsInfo={skillsInfo} />
           )}
-          {sections.includes("languages") && (
+          {layout.sections.full.includes("languages") && (
             <LanguageSection languageInfo={languageInfo} />
           )}
-          {sections.includes("experience") && (
+          {layout.sections.full.includes("experience") && (
             <ExperienceSection experienceInfo={experienceInfo} />
           )}
-          {sections.includes("education") && (
+          {layout.sections.full.includes("education") && (
             <EducationSection educationalInfo={educationalInfo} />
           )}
         </div>
-      ))}
+      ) : (
+        Object.entries(layout.sections).map(([columnKey, sections]) => (
+          <div key={columnKey} className="resume-column">
+            {sections.includes("personal") && (
+              <PersonalInfoSection personalInfo={personalInfo} />
+            )}
+            {sections.includes("skills") && (
+              <SkillsSection skillsInfo={skillsInfo} />
+            )}
+            {sections.includes("languages") && (
+              <LanguageSection languageInfo={languageInfo} />
+            )}
+            {sections.includes("experience") && (
+              <ExperienceSection experienceInfo={experienceInfo} />
+            )}
+            {sections.includes("education") && (
+              <EducationSection educationalInfo={educationalInfo} />
+            )}
+          </div>
+        ))
+      )}
     </div>
   );
 }
