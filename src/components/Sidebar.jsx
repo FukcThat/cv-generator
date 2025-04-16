@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { easeInOut, motion, AnimatePresence, Reorder } from "framer-motion";
+import "../styles/Sidebar.css";
 import LayoutForm from "./general/LayoutForm";
 import LanguageInfoForm from "./personal-info/LanguageInfoForm";
 import EducationInfoForm from "./education/EducationInfoForm";

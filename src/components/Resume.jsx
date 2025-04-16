@@ -1,4 +1,5 @@
 import ResumeLayout from "./resume/ResumeLayout";
+import "../styles/Resume.css";
 
 export default function Resume({
   personalInfo,
