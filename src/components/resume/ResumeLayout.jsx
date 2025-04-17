@@ -21,7 +21,7 @@ export default function ResumeLayout({
       className="resume-layout"
       style={{
         display: "grid",
-        gridTemplateColums: layout.gridTemplateColumns,
+        gridTemplateColumns: layout.gridTemplateColumns,
         gap: "1rem",
         alignItems: "start",
       }}

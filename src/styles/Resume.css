@@ -1,4 +1,4 @@
-.resume-container {
+/* .resume-container {
   margin: 4rem;
   padding-inline: 8mm;
   height: 297mm;
@@ -26,4 +26,53 @@
   display: block;
   width: 100%;
   max-width: 100%;
+}
+ */
+
+.resume-page {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.resume-container {
+  margin: 0;
+  padding: 8mm;
+  height: 297mm; /* A4 height */
+  width: 210mm; /* A4 width */
+  background-color: white;
+  color: black;
+  border: 1px solid rgb(148, 149, 149);
+  overflow: hidden; /* Prevent any overflow */
+}
+
+.resume-layout {
+  display: grid;
+  width: 100%;
+  gap: 1rem;
+  align-items: start;
+}
+
+.resume-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.resume-section {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.layout-button {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.layout-button img.layout-preview {
+  height: 2rem;
 }
