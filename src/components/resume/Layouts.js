@@ -16,4 +16,13 @@ export const layouts = {
       full: ["personal", "experience", "education", "skills", "languages"],
     },
   },
+  personalRight: {
+    name: "Right Column",
+    gridTemplateColumns: "70% 30%",
+    image: "layouts/layout-rightcolumn.png",
+    sections: {
+      left: ["experience", "education"],
+      right: ["personal", "skills", "languages"],
+    },
+  },
 };

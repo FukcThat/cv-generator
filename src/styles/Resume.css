@@ -75,4 +75,5 @@
 
 .layout-button img.layout-preview {
   height: 2rem;
+  width: auto;
 }
