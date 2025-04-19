@@ -33,7 +33,7 @@
 }
 
 .layout-button.selected {
-  border-color: #007bff;
+  border-color: rgb(140, 121, 121);
 }
 
 .collapsible-section {
@@ -114,7 +114,7 @@
 }
 
 .add-section-btn {
-  background-color: rgb(70, 85, 76);
+  background-color: rgb(140, 121, 121);
   width: 100%;
 }
 
