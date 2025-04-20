@@ -57,7 +57,11 @@ export default function PersonalInfoForm({ personalInfo, setPersonalInfo }) {
           type="date"
           id="birthdate"
           labelText="Date of birth"
-          value={personalInfo.birthdate}
+          value={
+            personalInfo.birthdate
+              ? personalInfo.birthdate.toISOString().split("T")[0]
+              : ""
+          }
           onChange={(e) => {
             setPersonalInfo({
               ...personalInfo,
