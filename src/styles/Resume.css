@@ -77,3 +77,42 @@
   height: 2rem;
   width: auto;
 }
+
+.resume-section .resume-entry {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas:
+    "job-title dates"
+    "company ."
+    "description description";
+  margin-bottom: 2rem;
+}
+
+.resume-entry p {
+  margin: 0;
+}
+
+.resume-entry h4 {
+  margin: 0;
+  grid-area: job-title;
+}
+
+.resume-entry .start-end-dates {
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  align-self: start;
+  justify-self: end;
+  grid-area: dates;
+}
+
+.resume-entry .company-name,
+.resume-entry .degree {
+  grid-area: company;
+  margin-bottom: 1rem;
+}
+
+.resume-entry .work-description,
+.resume-entry .edu-description {
+  grid-area: description;
+}

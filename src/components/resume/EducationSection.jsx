@@ -6,11 +6,13 @@ export default function EducationSection({ educationalInfo = [] }) {
         educationalInfo.map((educationEntry) => (
           <div key={educationEntry.id} className="resume-entry">
             <h4>{educationEntry.schoolName}</h4>
-            <p>{educationEntry.degree}</p>
-            <p>
+            <p className="start-end-dates">
               {educationEntry.startDate} - {educationEntry.endDate}
             </p>
-            {educationEntry.description && <p>{educationEntry.description}</p>}
+            <p className="degree">{educationEntry.degree}</p>
+            {educationEntry.description && (
+              <p className="edu-description">{educationEntry.description}</p>
+            )}
           </div>
         ))
       ) : (

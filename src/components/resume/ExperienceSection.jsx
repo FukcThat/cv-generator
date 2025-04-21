@@ -8,12 +8,12 @@ export default function ExperienceSection({ experienceInfo = [] }) {
             <h4>
               {experienceEntry.jobTitle} at {experienceEntry.companyName}
             </h4>
-            <p>{experienceEntry.companyLocation}</p>
-            <p>
+            <p className="start-end-dates">
               {experienceEntry.startDate} - {experienceEntry.endDate}
             </p>
+            <p className="company-name">{experienceEntry.companyLocation}</p>
             {experienceEntry.description && (
-              <p>{experienceEntry.description}</p>
+              <p className="work-description">{experienceEntry.description}</p>
             )}
           </div>
         ))
