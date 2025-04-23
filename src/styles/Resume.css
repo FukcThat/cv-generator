@@ -97,6 +97,12 @@
 .resume-entry h4 {
   margin: 0;
   grid-area: job-title;
+  color: rgb(214, 117, 72);
+}
+
+.resume-skills h4 {
+  color: black;
+  font-weight: normal;
 }
 
 .resume-entry .start-end-dates {
