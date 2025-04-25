@@ -107,3 +107,11 @@ h2 {
 .resume-entry .edu-description {
   grid-area: description;
 }
+
+.resume-language .resume-entry {
+  margin-bottom: 1rem;
+}
+
+.resume-language .resume-entry h4 {
+  margin-bottom: 0.5rem;
+}
