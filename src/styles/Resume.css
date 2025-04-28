@@ -22,12 +22,12 @@ h2 {
 .resume-container {
   margin: 0;
   padding: 8mm;
-  height: 297mm; /* A4 height */
-  width: 210mm; /* A4 width */
+  height: 297mm;
+  width: 210mm;
   background-color: white;
   color: black;
   border: 1px solid rgb(148, 149, 149);
-  overflow: hidden; /* Prevent any overflow */
+  overflow: hidden;
 }
 
 .resume-layout {

@@ -1,8 +1,24 @@
-# React + Vite
+# CV Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This was built as part of [The Odin Project](https://www.theodinproject.com/) curriculum.  
+It’s a CV Generator. It works (mostly). That’s good enough for me.
 
-Currently, two official plugins are available:
+You can fill out your details and get a basic CV without fighting a Word doc.  
+Calling it a day. 🚀
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+👉 [Live Demo](https://cv-maker.netlify.app)
+
+---
+
+## 💬 Notes
+
+- Built with [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML), [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS), and [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) (no fancy frameworks)
+- Deployed via [Netlify](https://www.netlify.com/)
+- I might update it later... or not. We'll see. 😎
+
+---
+
+## 📜 License
+
+[MIT License](https://choosealicense.com/licenses/mit/).  
+Do whatever you want with it.
