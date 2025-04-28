@@ -6,7 +6,7 @@ It’s a CV Generator. It works (mostly). That’s good enough for me.
 You can fill out your details and get a basic CV without fighting a Word doc.  
 Calling it a day. 🚀
 
-👉 [Live Demo](https://cv-maker.netlify.app)
+👉 [Live Demo](https://odin-cv-maker.netlify.app)
 
 ---
 
